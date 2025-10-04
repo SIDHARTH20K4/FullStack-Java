@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar() {
@@ -21,12 +22,12 @@ export default function Navbar() {
 					</svg>
 				</button>
 
-				<ul id="primary-navigation" className={`nav-list ${open ? 'open' : ''}`}>
-					<li><a href="/">Home</a></li>
-					<li><a href="/users">Users</a></li>
-					<li><a href="/add-user">Add User</a></li>
-					<li><a href="/view-user">View User</a></li>
-				</ul>
+						<ul id="primary-navigation" className={`nav-list ${open ? 'open' : ''}`}>
+							<li><Link to="/">Home</Link></li>
+							<li><Link to="/users">Users</Link></li>
+							<li><Link to="/add-user">Add User</Link></li>
+							<li><Link to="/view-user">View User</Link></li>
+						</ul>
 			</nav>
 		</header>
 	)

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import '../App.css'
 import './Home.css'
 
@@ -48,6 +49,7 @@ export default function Home() {
 													<th>ID</th>
 													<th>Name</th>
 													<th>Email</th>
+													<th>Actions</th>
 												</tr>
 											</thead>
 							<tbody>
@@ -56,11 +58,16 @@ export default function Home() {
 										<td>{u.id}</td>
 										<td>{u.name}</td>
 														<td>{u.email}</td>
+														<td className="actions">
+															<Link className="btn" to={`/view-user?id=${u.id}`}>View</Link>
+															<Link className="btn btn-outline" to={`/edit-user?id=${u.id}`}>Edit</Link>
+															<button className="btn btn-danger" onClick={() => handleDelete(u.id)}>Delete</button>
+														</td>
 									</tr>
 								))}
 								{users.length === 0 && (
 									<tr>
-														<td colSpan={3} style={{ textAlign: 'center', padding: '1rem' }}>
+														<td colSpan={4} style={{ textAlign: 'center', padding: '1rem' }}>
 											No users available
 										</td>
 									</tr>
