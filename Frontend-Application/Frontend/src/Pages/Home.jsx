@@ -3,14 +3,8 @@ import axios from 'axios'
 import '../App.css'
 import './Home.css'
 
-const initialUsers = [
-	{ id: 1, name: 'Sidharth Kumar', email: 'sidharth@example.com', role: 'Admin' },
-	{ id: 2, name: 'Asha Patel', email: 'asha.patel@example.com', role: 'User' },
-	{ id: 3, name: 'Ravi Singh', email: 'ravi.singh@example.com', role: 'User' },
-]
-
 export default function Home() {
-	const [users, setUsers] = React.useState(initialUsers)
+	const [users, setUsers] = React.useState([])
 	const [loading, setLoading] = React.useState(true)
 
 	React.useEffect(() => {
