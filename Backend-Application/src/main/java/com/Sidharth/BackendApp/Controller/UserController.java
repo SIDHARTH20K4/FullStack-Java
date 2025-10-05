@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.Sidharth.BackendApp.Model.User;
 import com.Sidharth.BackendApp.Repository.UserRepository;
+import com.Sidharth.BackendApp.Exception.UserNotFoundException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -23,5 +24,11 @@ public class UserController {
     @GetMapping("/getUser")
     List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("/getUser/{id}")
+    User getUserByID(long id){
+        return userRepository.findById(id).orElseThrow(
+            () -> new UserNotFoundException(id));
     }
 }
