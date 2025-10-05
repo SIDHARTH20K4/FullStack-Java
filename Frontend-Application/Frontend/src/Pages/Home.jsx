@@ -31,7 +31,19 @@ export default function Home() {
 
 	function handleDelete(id) {
 		if (!confirm('Delete this user?')) return
-		setUsers((u) => u.filter((x) => x.id !== id))
+
+		// attempt server delete, then update UI
+		axios
+			.delete(`http://localhost:8080/deleteUser/${id}`)
+			.then(() => {
+				setUsers((u) => u.filter((x) => x.id !== id))
+			})
+			.catch((err) => {
+				console.error('Delete failed, falling back to local removal', err)
+				// fallback: remove locally so the UI remains responsive
+				setUsers((u) => u.filter((x) => x.id !== id))
+				alert('Delete request failed. The item was removed locally. Check server logs.')
+			})
 	}
 
 	return (

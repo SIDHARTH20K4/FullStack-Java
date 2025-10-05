@@ -37,6 +37,9 @@ public class UserController {
 
     @PutMapping("/updateUser/{id}")
     public User updateUser(@RequestBody User newUser, @PathVariable("id") Long id) {
+        // DEBUG: log the deserialized incoming object to help diagnose binding errors
+        System.out.println("DEBUG updateUser received: name=" + newUser.getName() + ", userName=" + newUser.getUserName() + ", email=" + newUser.getEmail());
+
         return userRepository.findById(id)
             .map(user -> {
                 user.setUserName(newUser.getUserName());
